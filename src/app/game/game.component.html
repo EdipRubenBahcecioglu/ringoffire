@@ -1,0 +1,16 @@
+<div class="field">
+    <div class="card-stack">
+        <img *ngFor="let c of [0, 1, 2, 3]; let i = index;" [ngStyle]="{'right.px': i*5}" src="../../assets/img/cards/card_cover.png"> 
+        <!--let c (cards) of [erfundener Array, wie oft soll der HTML Schnipsel wiederholt werden, wir haben hier 5 Elemente im Array also wird der Schnippsel 5 mal wiederholt]-->
+        <!--let i = index (Angular kennt Index automatisch als 0 an und erhöht diesen dann um 1)--> 
+        <!--[ngStyle]="{'right.px(Abstand nach rechts in Pixeln) : Index*5 d.h. Abstand nach rechts der ersten Karte = 0, Abstand der zweiten Karte = 5, dann 10...'}"-->
+
+        <img (click)="takeCard()" class="top-card" style="right:25px" src="../../assets/img/cards/card_cover.png">
+        <!--Wir wollen die oberste Karte immer animieren, darum haben wir die einzelnt separat gezeichnet-->
+        <!-- In der for Schleife nach der div card stack haben wir den index *5 genommen und wir haben 4 Elemente im Array d.h. hier war der index 20, deshalb hat die oberste Karte nochmal 5px mehr abstand, daher 25px-->
+        <!--## ENTFERNEN[class.pick-card]="pickCardAnimation" Die Klasse pick-card wird dem HTML Tag hinzugefügt, wenn die bolean Variable pickCardAnimation true ist--> 
+
+        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-card" style="right:25px" src="../../assets/img/cards/ace_1.png">
+    </div>
+
+</div>
