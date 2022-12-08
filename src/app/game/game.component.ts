@@ -9,7 +9,7 @@ import { Game } from 'src/models/game';
 export class GameComponent implements OnInit {
   pickCardAnimation = false;
   currentCard: string = ''; // currentCard ist ein Stringtyp und von default aus ein leerer String
-  game: Game;
+  game!: Game;
 
   constructor() {
   }

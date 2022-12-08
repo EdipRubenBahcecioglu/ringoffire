@@ -8,10 +8,8 @@
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
-    // "noImplicitReturns": true,
-    "noImplicitReturns": false, // new
+    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": false, // new
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -31,6 +29,5 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
-    "strictPropertyInitialization": false // new
   }
 }

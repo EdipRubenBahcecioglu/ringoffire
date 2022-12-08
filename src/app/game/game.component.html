@@ -1,4 +1,4 @@
-<app-player *ngFor="let player of game.players let i = index"; [ngStyle]="{'top.px': 100 + (i*120)}"; [name]="player"; class="player-position"></app-player> 
+<app-player *ngFor="let player of game.players let i = index"; [ngStyle]="{'top.px': 100 + (i*120)}"; class="player-position" [name]="player"></app-player> 
 <!--Wir binden den Player selector / Player Componente im game selector ein-->
 <!--Da wir den app player selector auf dem game selector Bildschirm beliebig positionieren wollen, muss die classe player position in der game.scss definiert werden-->
 <!--Style top 130px wurde hier definiert und nicht in der SCSS Datei, da wir die topangabe später berechnen lassen wollen-->
