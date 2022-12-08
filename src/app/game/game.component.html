@@ -1,5 +1,17 @@
+<app-player *ngFor="let player of game.players let i = index"; [ngStyle]="{'top.px': 100 + (i*120)}"; [name]="player"; class="player-position"></app-player> 
+<!--Wir binden den Player selector / Player Componente im game selector ein-->
+<!--Da wir den app player selector auf dem game selector Bildschirm beliebig positionieren wollen, muss die classe player position in der game.scss definiert werden-->
+<!--Style top 130px wurde hier definiert und nicht in der SCSS Datei, da wir die topangabe später berechnen lassen wollen-->
+<!--Mit ngFor starten wir eine for Schleife und definieren uns eine Variable payer und iterieren durch den array game.players-->
+<!--player übernimmt im ersten Durchlauf das erste Objekt aus dem Array, im zweiten Durchlauf das zweite Objekt und immer so weiter-->
+<!--i = index bedeutet, dass wir uns einen index definieren, der automatisch anfangs 0 ist, danach 1, danach 2 und so weiter-->
+<!--top.px hat im ersten Durchlauf 100 + (0*120), danach 100 + (1*120) und immer so weiter-->
+<!--Wir definieren von hier aus die Variable [name] und weisen jeweils nach jedem Durchlauf den Spielernamen der Variable zu. Diese Variable wird in der player.ts importiert. Danach kann diese Variable in der Player HTML angewendet werden-->
+
+
 <div class="field">
     <div class="card-stack">
+        <!--Card Stack-->
         <img *ngFor="let c of [0, 1, 2, 3]; let i = index;" [ngStyle]="{'right.px': i*5}" src="../../assets/img/cards/card_cover.png"> 
         <!--let c (cards) of [erfundener Array, wie oft soll der HTML Schnipsel wiederholt werden, wir haben hier 5 Elemente im Array also wird der Schnippsel 5 mal wiederholt]-->
         <!--let i = index (Angular kennt Index automatisch als 0 an und erhöht diesen dann um 1)--> 
@@ -8,9 +20,16 @@
         <img (click)="takeCard()" class="top-card" style="right:25px" src="../../assets/img/cards/card_cover.png">
         <!--Wir wollen die oberste Karte immer animieren, darum haben wir die einzelnt separat gezeichnet-->
         <!-- In der for Schleife nach der div card stack haben wir den index *5 genommen und wir haben 4 Elemente im Array d.h. hier war der index 20, deshalb hat die oberste Karte nochmal 5px mehr abstand, daher 25px-->
-        <!--## ENTFERNEN[class.pick-card]="pickCardAnimation" Die Klasse pick-card wird dem HTML Tag hinzugefügt, wenn die bolean Variable pickCardAnimation true ist--> 
 
-        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-card" style="right:25px" src="../../assets/img/cards/ace_1.png">
+        <!--Stack for played Cards-->
+        <img *ngFor="let playedcards of game.playedCards" class="played-card" src="../../assets/img/cards/{{ playedcards }}.png">
+        <!--Mit ngFor starten wir eine for Schleife-->
+        <!--Wir definieren uns eine Variable playedcards und iterieren mit of game.playedCards durch den Array game.playedCards-->
+        <!--Die Variable playedcards hat beim ersten durchlauf das erste Element aus dem playedCards Array, danach das zweite Element und immer so weiter-->
+
+        <!--Current Card (Animation)-->
+        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-card" style="right:25px" src="../../assets/img/cards/{{ currentCard }}.png">
+        <!--Wir haben uns in der TS Datei die Variable currentCard definiert, die uns immer eine Zufällige Karte aus dem Stack Array ausgibt, diese Karte wird nun hier als Pfad herausgegeben-->
     </div>
 
 </div>
