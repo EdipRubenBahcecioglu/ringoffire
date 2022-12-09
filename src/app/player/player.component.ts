@@ -8,7 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PlayerComponent implements OnInit {
   
   @Input() name;
-  // @Input() name: string='';
 
   constructor() {}
 
