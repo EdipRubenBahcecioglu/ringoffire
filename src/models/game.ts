@@ -1,5 +1,5 @@
 export class Game {
-    public players :string[] = ['Mero', 'Sero', 'Xatar', 'SSIO']; // mit public sagen wir, dass wir von außerhalb auf dieses Objekt zugreifen können
+    public players :string[] = []; // mit public sagen wir, dass wir von außerhalb auf dieses Objekt zugreifen können
     public stack :string[] = []; // :string meint, dass innerhalb des Arrays nur Zeichen stehen ohne Number o.ä.
     public playedCards: string[] = [];
     public currentPlayer: number = 0;

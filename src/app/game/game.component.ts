@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog'; // Wir importieren von Material Design den Dialog
+import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+
 
 @Component({
   selector: 'app-game',
@@ -11,7 +14,7 @@ export class GameComponent implements OnInit {
   currentCard: string = ''; // currentCard ist ein Stringtyp und von default aus ein leerer String
   game: Game;
 
-  constructor() {
+  constructor(public dialog: MatDialog) { // Unser Dialog von Material Design soll von übreall zugägnglich sein 
   }
 
   ngOnInit(): void { // Alles innerhalb der ngOnInit wird sofort aufgerufen sobald wir in der game Componente sind bzw. wenn der game selector aufgerufen wird
@@ -32,5 +35,13 @@ export class GameComponent implements OnInit {
         this.pickCardAnimation = false;
       }, 1250);
     }
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogAddPlayerComponent); // Der Dialog add player selector soll geöffnet werden
+
+    dialogRef.afterClosed().subscribe(name => { // Die Variable Name ist der Name der beim Inputfeld AddPlayer eingetragen wird
+      this.game.players.push(name);
+    });
   }
 }

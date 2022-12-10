@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Add new Player</h1>
+
+
+<div mat-dialog-content>
+  <p>Please enter the name of a player</p>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="name"> 
+    <!--Die Variable name wird ebenfalls der Variable name von dialog-add-player-component.ts zugewiesen-->
+    <!--Mid ngModel haben wir die Möglichkeit in Inputfeld zu einer Variable zu binden und hier binden wir das Inputfeld mit der Variable name von der dialog-add-player-component.ts-->
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+</div>
