@@ -8,11 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PlayerComponent implements OnInit {
   
   @Input() name;
+  @Input () playerActive = false; // standardgemäß ist die boolean Variable immer false, da ein Spieler nicht aktiv ist
 
   constructor() {}
 
   ngOnInit(): void{
 
   }
-
 }

@@ -1,4 +1,6 @@
-<div class="player">
+<div class="player" [class.player-active]="playerActive">
     <img src="../../assets/img/player.png">
     <span>{{ name }}</span>
 </div>
+
+<!--Wenn die boolean bzw. inputvariable true ist dann bekommt die div die classe player-active zugewiesen-->

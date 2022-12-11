@@ -29,6 +29,9 @@ export class GameComponent implements OnInit {
     if(!this.pickCardAnimation){ // Alle 1,5 Sekunden können wir eine neue Karte ziehen, da im Timeout die bolean Variable erst wieder auf false gesetzt wird
       this.currentCard = this.game.stack.pop()!; // wir verweisen der Variable currentCard eine bestimmte Karte aus dem stack (Kartendeck) array // Mit .pop greifen wir immer auf den letzten Wert eines Arrays zu und splicen diesen auch direkt
       this.pickCardAnimation = true;
+      this.game.currentPlayer++
+      this.game.currentPlayer = this.game.currentPlayer & this.game.players.length; 
+      // Mit Modulu Operator verhindern wir, dass der currentPlayer mit ++ länger als der eingendliche Spieler Array hochgeht. Wenn das Ende vom SpielerArray erreicht ist, fangen wir wieder von vorne an
   
       setTimeout(()=>{
         this.game.playedCards.push(this.currentCard); // Alle Karten die wir bereits gezogen haben, werden in das Array playedCards gepusht

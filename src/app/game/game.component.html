@@ -1,13 +1,14 @@
-<app-player *ngFor="let player of game.players let i = index" [ngStyle]="{'top.px': 100 + (i*120)}"
-    class="player-position" [name]="player"></app-player>
+<app-player *ngFor="let player of game.players let i = index" [ngStyle]="{'top.px': 100 + (i*90)}"
+    class="player-position" [name]="player" [playerActive]="i == game.currentPlayer"></app-player>
 <!--Wir binden den Player selector / Player Componente im game selector ein-->
 <!--Da wir den app player selector auf dem game selector Bildschirm beliebig positionieren wollen, muss die classe player position in der game.scss definiert werden-->
 <!--Style top 130px wurde hier definiert und nicht in der SCSS Datei, da wir die topangabe später berechnen lassen wollen-->
 <!--Mit ngFor starten wir eine for Schleife und definieren uns eine Variable payer und iterieren durch den array game.players-->
 <!--player übernimmt im ersten Durchlauf das erste Objekt aus dem Array, im zweiten Durchlauf das zweite Objekt und immer so weiter-->
 <!--i = index bedeutet, dass wir uns einen index definieren, der automatisch anfangs 0 ist, danach 1, danach 2 und so weiter-->
-<!--top.px hat im ersten Durchlauf 100 + (0*120), danach 100 + (1*120) und immer so weiter-->
+<!--top.px hat im ersten Durchlauf 100 + (0*90), danach 100 + (1*900) und immer so weiter-->
 <!--Wir definieren von hier aus die Variable [name] und weisen jeweils nach jedem Durchlauf den Spielernamen der Variable zu. Diese Variable wird in der player.ts importiert. Danach kann diese Variable in der Player HTML angewendet werden-->
+<!--Wir definieren mit [playerActive] eine neue Inputvariable und sagen wenn i dem Wert von game.currentPlayer entspricht dann returnen wir an die Variable true-->
 
 
 <div class="field">
@@ -43,3 +44,6 @@
 <!--Diesen Schnipsel haben wir von Material Design reinkopiert-->
 <!--mit <mat-icon>add</mat-icon> Fügen wir ein + Icon von Material Design hinzu. Wenn wir hier z.B. delete reinschreiben würden, bekommen wir ein Papierkorb Bild-->
 <!--Eigene classen kann man sich hier trotzdem erstellen-->
+
+<app-game-description class="pin-bottom" [card]="currentCard"></app-game-description>
+<!--Wir definieren uns hier eine Inputvariable und geben der Variable card immer den Namen der gezogenen Karte aus Zeile 36 mit-->
