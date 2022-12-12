@@ -1,9 +1,13 @@
 <mat-card>
     <mat-card-title class="mat-card-title">
-        {{ title }}
+        {{ card ? title : 'Please pick a card' }}
+        <!-- Hier findet eine If Else Abfrage statt-->
+        <!--If card existiert ? dann soll die Inputvariable title ausgegeben werden ansonsten : 'Frei erfundener Text, hier: Please pick a card'-->
     </mat-card-title>
 
     <mat-card-content>
-        {{ description }}
+        {{ card ? description : 'Click on the card stack to select the next card ' }}
+        <!-- Hier findet eine If Else Abfrage statt-->
+        <!--If card existiert ? dann soll die Inputvariable description ausgegeben werden ansonsten : 'Frei erfundener Text, hier: Click on the card stack to select the next card'-->
     </mat-card-content>
 </mat-card>

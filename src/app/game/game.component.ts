@@ -30,7 +30,7 @@ export class GameComponent implements OnInit {
       this.currentCard = this.game.stack.pop()!; // wir verweisen der Variable currentCard eine bestimmte Karte aus dem stack (Kartendeck) array // Mit .pop greifen wir immer auf den letzten Wert eines Arrays zu und splicen diesen auch direkt
       this.pickCardAnimation = true;
       this.game.currentPlayer++
-      this.game.currentPlayer = this.game.currentPlayer & this.game.players.length; 
+      this.game.currentPlayer = this.game.currentPlayer % this.game.players.length; 
       // Mit Modulu Operator verhindern wir, dass der currentPlayer mit ++ länger als der eingendliche Spieler Array hochgeht. Wenn das Ende vom SpielerArray erreicht ist, fangen wir wieder von vorne an
   
       setTimeout(()=>{
@@ -44,7 +44,10 @@ export class GameComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent); // Der Dialog add player selector soll geöffnet werden
 
     dialogRef.afterClosed().subscribe(name => { // Die Variable Name ist der Name der beim Inputfeld AddPlayer eingetragen wird
-      this.game.players.push(name);
+      if(name && name.length > 0){
+        // Im ersten Schritt prüfen wir ob die Variable existiert und im zweiten Scrhitt prüfen wir die Länge der Variable
+        this.game.players.push(name);
+      }
     });
   }
 }

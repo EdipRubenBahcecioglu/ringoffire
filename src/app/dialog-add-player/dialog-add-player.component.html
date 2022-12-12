@@ -12,5 +12,6 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+  <button mat-button [disabled]="name.length == 0" [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+  <!--Mit [disabled]="name.length == 0" machen wir den Button uncklickbar, solange der eingebene Name nicht länger als 0 Zeichen ist-->
 </div>
