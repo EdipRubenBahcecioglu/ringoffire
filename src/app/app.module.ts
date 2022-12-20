@@ -15,6 +15,12 @@ import {MatInputModule} from '@angular/material/input'; // Wir importieren von M
 import {FormsModule} from '@angular/forms';
 import { GameDescriptionComponent } from './game-description/game-description.component'; // wir importieren von Material Design das Carddesign
 import {MatCardModule} from '@angular/material/card';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -34,7 +40,12 @@ import {MatCardModule} from '@angular/material/card';
     MatInputModule, //Wir imprtieren von Material Design Input Module
     MatDialogModule, // Wir imprtieren von Material Design Dialog Module
     MatCardModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]
