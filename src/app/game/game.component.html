@@ -15,25 +15,25 @@
     <div class="card-stack">
         <!--Card Stack-->
         <img *ngFor="let c of [0, 1, 2, 3]; let i = index;" [ngStyle]="{'right.px': i*5}"
-            src="assets/img/cards/card_cover.png">
+            src="/assets/img/cards/card_cover.png">
         <!--let c (cards) of [erfundener Array, wie oft soll der HTML Schnipsel wiederholt werden, wir haben hier 5 Elemente im Array also wird der Schnippsel 5 mal wiederholt]-->
         <!--let i = index (Angular kennt Index automatisch als 0 an und erhöht diesen dann um 1)-->
         <!--[ngStyle]="{'right.px(Abstand nach rechts in Pixeln) : Index*5 d.h. Abstand nach rechts der ersten Karte = 0, Abstand der zweiten Karte = 5, dann 10...'}"-->
 
-        <img (click)="takeCard()" class="top-card" style="right:25px" src="assets/img/cards/card_cover.png">
+        <img (click)="takeCard()" class="top-card" style="right:25px" src="/assets/img/cards/card_cover.png">
         <!--Wir wollen die oberste Karte immer animieren, darum haben wir die einzelnt separat gezeichnet-->
         <!-- In der for Schleife nach der div card stack haben wir den index *5 genommen und wir haben 4 Elemente im Array d.h. hier war der index 20, deshalb hat die oberste Karte nochmal 5px mehr abstand, daher 25px-->
 
         <!--Stack for played Cards-->
         <img *ngFor="let playedcards of game.playedCards" class="played-card"
-            src="assets/img/cards/{{ playedcards }}.png">
+            src="/assets/img/cards/{{ playedcards }}.png">
         <!--Mit ngFor starten wir eine for Schleife-->
         <!--Wir definieren uns eine Variable playedcards und iterieren mit of game.playedCards durch den Array game.playedCards-->
         <!--Die Variable playedcards hat beim ersten durchlauf das erste Element aus dem playedCards Array, danach das zweite Element und immer so weiter-->
 
         <!--Current Card (Animation)-->
-        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-card" style="right:25px"
-            src="assets/img/cards/{{ currentCard }}.png">
+        <img (click)="takeCard()" *ngIf="game.pickCardAnimation" class="pick-card" style="right:25px"
+            src="/assets/img/cards/{{ game.currentCard }}.png">
         <!--Wir haben uns in der TS Datei die Variable currentCard definiert, die uns immer eine Zufällige Karte aus dem Stack Array ausgibt, diese Karte wird nun hier als Pfad herausgegeben-->
     </div>
 </div>
@@ -45,5 +45,5 @@
 <!--mit <mat-icon>add</mat-icon> Fügen wir ein + Icon von Material Design hinzu. Wenn wir hier z.B. delete reinschreiben würden, bekommen wir ein Papierkorb Bild-->
 <!--Eigene classen kann man sich hier trotzdem erstellen-->
 
-<app-game-description class="pin-bottom" [card]="currentCard"></app-game-description>
+<app-game-description class="pin-bottom" [card]="game.currentCard"></app-game-description>
 <!--Wir definieren uns hier eine Inputvariable und geben der Variable card immer den Namen der gezogenen Karte aus Zeile 36 mit-->

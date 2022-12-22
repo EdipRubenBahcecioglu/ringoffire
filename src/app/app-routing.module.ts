@@ -5,7 +5,7 @@ import { StartScreenComponent } from './start-screen/start-screen.component';
 
 const routes: Routes = [
   {path: '', component: StartScreenComponent}, // StartScreen Operator wird angezeigt wenn nach dem Backslash vom Link nichts steht z.B. ringoffire.de/
-  {path: 'game', component: GameComponent}
+  {path: 'game/:id', component: GameComponent} // Mit /:id legen wir eine Variable fest d.h. man kann hier auf ein bestimmtes Spiel mit der ID XY aus der Datenbank zugreifen
 ];
 
 @NgModule({

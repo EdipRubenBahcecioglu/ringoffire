@@ -3,6 +3,8 @@ export class Game {
     public stack :string[] = []; // :string meint, dass innerhalb des Arrays nur Zeichen stehen ohne Number o.ä.
     public playedCards: string[] = [];
     public currentPlayer: number = 0;
+    public pickCardAnimation = false;
+    public currentCard: string = ''; // currentCard ist ein Stringtyp und von default aus ein leerer String
 
     constructor(){
         for (let i = 1; i < 14; i++) { // Mit dieser forSchleife pushen wir alle Kartennamen in den stack array
@@ -14,6 +16,18 @@ export class Game {
         }
 
         shuffle(this.stack); // Mit dieser Funktion die wir aufrufen, wird unser Array mit allen Karten durchgemischt
+    }
+
+    // Mit der toJson Methode wandeln wir ein Object z.B. das Game Objekt in ein JSON um 
+    public toJson(){
+        return {
+            players: this.players,
+            stack: this.stack,
+            playedCards: this.playedCards,
+            currentPlayer: this.currentPlayer,
+            pickCardAnimation: this.pickCardAnimation,
+            currentCard: this.currentCard
+        };
     }
 }
 
