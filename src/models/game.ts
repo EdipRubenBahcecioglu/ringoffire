@@ -1,5 +1,6 @@
 export class Game {
     public players :string[] = []; // mit public sagen wir, dass wir von außerhalb auf dieses Objekt zugreifen können
+    public player_images :string[] = [];
     public stack :string[] = []; // :string meint, dass innerhalb des Arrays nur Zeichen stehen ohne Number o.ä.
     public playedCards: string[] = [];
     public currentPlayer: number = 0;
@@ -22,6 +23,7 @@ export class Game {
     public toJson(){
         return {
             players: this.players,
+            player_images: this.player_images,
             stack: this.stack,
             playedCards: this.playedCards,
             currentPlayer: this.currentPlayer,

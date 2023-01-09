@@ -1,17 +1,26 @@
-<app-player *ngFor="let player of game.players let i = index" [ngStyle]="{'top.px': 100 + (i*90)}"
-    class="player-position" [name]="player" [playerActive]="i == game.currentPlayer"></app-player>
+<app-player (click)="changeAvatar(i)" *ngFor="let player of game.players let i = index" [ngStyle]="{'top.px': 20 + (i*70)}"
+    class="player-position hide-mobile" [name]="player" [image]="game.player_images[i]" [playerActive]="i == game.currentPlayer"></app-player>
 <!--Wir binden den Player selector / Player Componente im game selector ein-->
 <!--Da wir den app player selector auf dem game selector Bildschirm beliebig positionieren wollen, muss die classe player position in der game.scss definiert werden-->
 <!--Style top 130px wurde hier definiert und nicht in der SCSS Datei, da wir die topangabe später berechnen lassen wollen-->
 <!--Mit ngFor starten wir eine for Schleife und definieren uns eine Variable payer und iterieren durch den array game.players-->
 <!--player übernimmt im ersten Durchlauf das erste Objekt aus dem Array, im zweiten Durchlauf das zweite Objekt und immer so weiter-->
 <!--i = index bedeutet, dass wir uns einen index definieren, der automatisch anfangs 0 ist, danach 1, danach 2 und so weiter-->
-<!--top.px hat im ersten Durchlauf 100 + (0*90), danach 100 + (1*900) und immer so weiter-->
+<!--top.px hat im ersten Durchlauf 20 + (0*70), danach 20 + (1*70) und immer so weiter-->
 <!--Wir definieren von hier aus die Variable [name] und weisen jeweils nach jedem Durchlauf den Spielernamen der Variable zu. Diese Variable wird in der player.ts importiert. Danach kann diese Variable in der Player HTML angewendet werden-->
 <!--Wir definieren mit [playerActive] eine neue Inputvariable und sagen wenn i dem Wert von game.currentPlayer entspricht dann returnen wir an die Variable true-->
 
+<div class="scroll-container hide-desktop">
+    <app-player-mobile (click)="changeAvatar(i)" *ngFor="let player of game.players let i = index" [ngStyle]="{'left.px': 10 + (i*65), 'top.px': 0}"
+    [name]="player" [image]="game.player_images[i]" [playerActive]="i == game.currentPlayer"></app-player-mobile>
+</div>
 
-<div class="field">
+<div *ngIf="gameOver" class="game-over">
+    <img src="./../../assets/img/game_over.svg">
+</div>
+
+
+<div *ngIf="!gameOver" class="field">
     <div class="card-stack">
         <!--Card Stack-->
         <img *ngFor="let c of [0, 1, 2, 3]; let i = index;" [ngStyle]="{'right.px': i*5}"
@@ -38,12 +47,19 @@
     </div>
 </div>
 
-<button mat-fab color="primary" class="btn-add" (click)="openDialog()">
+<button *ngIf="!gameOver" mat-fab color="primary" class="btn-add" (click)="openDialog()">
     <mat-icon>add</mat-icon>
 </button>
 <!--Diesen Schnipsel haben wir von Material Design reinkopiert-->
 <!--mit <mat-icon>add</mat-icon> Fügen wir ein + Icon von Material Design hinzu. Wenn wir hier z.B. delete reinschreiben würden, bekommen wir ein Papierkorb Bild-->
 <!--Eigene classen kann man sich hier trotzdem erstellen-->
 
-<app-game-description class="pin-bottom" [card]="game.currentCard"></app-game-description>
+<app-game-description *ngIf="!gameOver" class="pin-bottom" [card]="game.currentCard"></app-game-description>
 <!--Wir definieren uns hier eine Inputvariable und geben der Variable card immer den Namen der gezogenen Karte aus Zeile 36 mit-->
+
+<div [ngClass]="{'no-player-alert-box': !playersAvailable}">
+    <span>Please add at least two Players!</span>
+</div>
+
+<img class="preloadImage" src="./../../assets/img/cards/{{ game.stack[game.stack.length -1] }}.png">
+<!--Mithilfe von diesem Schnippsel laden wir bereits die nächste Karte vor damit das Spiel ohne Delay abläuft-->

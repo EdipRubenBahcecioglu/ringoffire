@@ -1,3 +1,9 @@
 .mat-card-title{
     padding: 16px;
 }
+
+.mat-mdc-card {
+    @media (max-width: 720px) {
+        min-width: 150px;
+    }
+}

@@ -22,6 +22,7 @@
     justify-content: center;
     align-items: center;
 
+
     img {
         width: 40vw;
         height: auto;
@@ -36,5 +37,30 @@
         position: absolute;
         font-size: 50px;
         font-weight: 600;
+        cursor: pointer;
+
+        &:hover{
+            filter: brightness(1.25);
+        }
+
+        @media(max-width: 1000px){
+            font-size: 40px;
+            margin-bottom: 0px;
+        }
+
+        @media(max-width: 870px){
+            font-size: 30px;
+            margin-bottom: 0px;
+        }
+
+        @media(max-width: 600px){
+            font-size: 20px;
+            margin-bottom: 0px;
+        }
+
+        @media(max-width: 400px){
+            font-size: 14px;
+            margin-bottom: 0px;
+        }
     }
 }

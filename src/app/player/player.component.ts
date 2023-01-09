@@ -1,3 +1,4 @@
+import { InvokeFunctionExpr } from '@angular/compiler';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -9,6 +10,7 @@ export class PlayerComponent implements OnInit {
   
   @Input() name;
   @Input () playerActive = false; // standardgemäß ist die boolean Variable immer false, da ein Spieler nicht aktiv ist
+  @Input() image = 'player.png';
 
   constructor() {}
 
