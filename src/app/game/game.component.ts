@@ -15,7 +15,6 @@ import { EditPlayerComponent } from '../edit-player/edit-player.component';
 export class GameComponent implements OnInit {
   game: Game;
   gameId;
-  playersAvailable = false;
   gameOver = false;
 
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public dialog: MatDialog) {
@@ -57,7 +56,6 @@ export class GameComponent implements OnInit {
       this.game.currentCard = this.game.stack.pop()!; // wir verweisen der Variable currentCard eine bestimmte Karte aus dem stack (Kartendeck) array // Mit .pop greifen wir immer auf den letzten Wert eines Arrays zu und splicen diesen auch direkt
       this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
-      this.playersAvailable = true;
 
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
       // Mit Modulu Operator verhindern wir, dass der currentPlayer mit ++ länger als der eingendliche Spieler Array hochgeht. Wenn das Ende vom SpielerArray erreicht ist, fangen wir wieder von vorne an
